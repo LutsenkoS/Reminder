@@ -70,8 +70,7 @@ namespace Reminder
         }
         
         private void CreateNotifyIcon()
-        {
-            //create new objects
+        {           
             components1 = new Container();
             contextMenu1 = new ContextMenu();
             menuItem1 = new MenuItem();
@@ -108,80 +107,87 @@ namespace Reminder
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //this.Activate();
            
             DialogResult dlg = MessageBox.Show("Вы уверены?", "Выход", MessageBoxButtons.YesNo);
             if (dlg == DialogResult.No)
                 e.Cancel = true;
             else
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(saveData));
-                
-                TextWriter writer = null;
-                try
-                {
-                    writer = new StreamWriter("Settings.xml");
+                SaveSettings();
 
-                    saveData myData = new saveData();
-                    myData.backColor = ColorTranslator.ToHtml(this.BackColor);
-                    myData.width = this.Size.Width;
-                    myData.height = this.Size.Height;
-                    myData.location = this.Location;
-                    serializer.Serialize(writer, myData);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    writer.Close();
-                }
-                
             }
 
-           
+
         }
-        
+
+        private void SaveSettings()
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(saveData));
+
+            TextWriter writer = null;
+            try
+            {
+                writer = new StreamWriter("Settings.xml");
+
+                saveData myData = new saveData();
+                myData.backColor = ColorTranslator.ToHtml(this.BackColor);
+                myData.width = this.Size.Width;
+                myData.height = this.Size.Height;
+                myData.location = this.Location;
+                serializer.Serialize(writer, myData);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                writer.Close();
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            if (richTextBox1.Text == "")
+            if (richTextBox1.Text == string.Empty)
             {
                 MessageBox.Show("Введите описание для события!");
             }
             else
             {
-                //table Events
-                Table Events = new Table();
-                Events.Create();
-                                            
-                //read table from file if exist
-                try
-                {
-                    Events.eventTable.ReadXml("Events.xml");
-                }
-                catch (Exception ex)
-                {
-                     MessageBox.Show(ex.ToString());
-                }
-               
-                //fill table row
-                DataRow eventRow = Events.eventTable.NewRow();
-                eventRow["EventDate"] = monthCalendar1.SelectionRange.Start.ToShortDateString();
-                eventRow["EventTime"] = comboBox1.Text + ":" + comboBox2.Text;
-                eventRow["EventDesc"] = richTextBox1.Text;
-                Events.eventTable.Rows.Add(eventRow);
-                    //write to file
-                Events.eventTable.WriteXml("Events.xml");
-                                       
-                MessageBox.Show("Событие дабавлено!");   
-                richTextBox1.Text = "";
-
+                AddEventToTable();
 
             }
-            
+
         }
 
+        private void AddEventToTable()
+        {
+            //table Events
+            Table Events = new Table();
+            Events.Create();
+
+            //read table from file if exist
+            try
+            {
+                Events.eventTable.ReadXml("Events.xml");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+            //fill table row
+            DataRow eventRow = Events.eventTable.NewRow();
+            eventRow["EventDate"] = monthCalendar1.SelectionRange.Start.ToShortDateString();
+            eventRow["EventTime"] = comboBox1.Text + ":" + comboBox2.Text;
+            eventRow["EventDesc"] = richTextBox1.Text;
+            Events.eventTable.Rows.Add(eventRow);
+            //write to file
+            Events.eventTable.WriteXml("Events.xml");
+
+            MessageBox.Show("Событие дабавлено!");
+            richTextBox1.Text = "";
+        }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -190,6 +196,49 @@ namespace Reminder
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+            ReadSettings();
+            for (int i = 0; i < 60; i++)
+            {
+                if (i < 24)
+                    comboBox1.Items.Add(i);
+                comboBox2.Items.Add(i);
+            }
+            MissedEvents();
+
+        }
+
+        private static void MissedEvents()
+        {
+            Table Events = new Table();
+            Events.Create();
+            try
+            {
+                Events.eventTable.ReadXml("Events.xml");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            string allPastEvents = string.Empty;
+            for (int i = 0; i < Events.eventTable.Rows.Count; i++)
+            {
+                object[] itemsArray = Events.eventTable.Rows[i].ItemArray;
+                string s1 = itemsArray[1].ToString() + " " + itemsArray[2].ToString();
+                if (DateTime.Now.CompareTo(Convert.ToDateTime(s1)) > 0)
+                    allPastEvents += itemsArray[3].ToString() + " Дата: " + s1 + "\n";
+            }
+            if (allPastEvents != string.Empty)
+            {
+                MessageBox.Show("Пропущенные события: \n" + allPastEvents, "Уведомление");
+            }
+            else
+            {
+                MessageBox.Show("Вы не пропустили никаких событий.", "Уведомление");
+            }
+        }
+
+        private void ReadSettings()
         {
             RegistryKey myKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
             myKey.SetValue("Reminder", Application.ExecutablePath);
@@ -208,46 +257,14 @@ namespace Reminder
                 this.Location = myData.location;
                 //fs.Close();
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
             }
             finally
             {
                 fs.Close();
             }
-            for (int i = 0; i < 60; i++)
-            {               
-                    comboBox2.Items.Add(i);
-            }
-            //DataTable eventTable = new DataTable("Events");
-            Table ta = new Table();
-            ta.Create();
-            try
-            {
-                ta.eventTable.ReadXml("Events.xml");               
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            string allPastEvents = string.Empty;           
-            for (int i = 0; i < ta.eventTable.Rows.Count; i++)
-            {
-                object[] itemsArray = ta.eventTable.Rows[i].ItemArray;
-                string s1 = itemsArray[1].ToString() + " " + itemsArray[2].ToString();
-                if (DateTime.Now.CompareTo(Convert.ToDateTime(s1)) > 0)
-                    allPastEvents += itemsArray[3].ToString() + " Дата: " + s1 + "\n";                
-            }
-            if (allPastEvents != string.Empty)
-            {
-                MessageBox.Show("Пропущенные события: \n" + allPastEvents, "Уведомление");
-            }
-            else
-            {
-                MessageBox.Show("Вы не пропустили никаких событий.", "Уведомление");
-            }
-
         }
 
         private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
