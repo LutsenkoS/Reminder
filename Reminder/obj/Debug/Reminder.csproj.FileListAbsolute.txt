@@ -1,22 +1,12 @@
-c:\users\pc\documents\visual studio 2012\Projects\Reminder\Reminder\bin\Debug\Reminder.exe.config
-c:\users\pc\documents\visual studio 2012\Projects\Reminder\Reminder\obj\Debug\Reminder.Form1.resources
-c:\users\pc\documents\visual studio 2012\Projects\Reminder\Reminder\obj\Debug\Reminder.Properties.Resources.resources
-c:\users\pc\documents\visual studio 2012\Projects\Reminder\Reminder\obj\Debug\Reminder.csproj.GenerateResource.Cache
-c:\users\pc\documents\visual studio 2012\Projects\Reminder\Reminder\bin\Debug\Reminder.exe
-c:\users\pc\documents\visual studio 2012\Projects\Reminder\Reminder\bin\Debug\Reminder.pdb
-c:\users\pc\documents\visual studio 2012\Projects\Reminder\Reminder\obj\Debug\Reminder.exe
-c:\users\pc\documents\visual studio 2012\Projects\Reminder\Reminder\obj\Debug\Reminder.pdb
-C:\Users\PC\Documents\Visual Studio 2012\Projects\Reminder\Reminder\obj\Debug\Reminder.Form2.resources
-C:\Users\PC\Documents\Visual Studio 2012\Projects\Reminder\Reminder\obj\Debug\Reminder.csprojResolveAssemblyReference.cache
 D:\Projects\Reminder\Reminder\bin\Debug\Reminder.exe.config
-D:\Projects\Reminder\Reminder\obj\Debug\Reminder.exe
-D:\Projects\Reminder\Reminder\obj\Debug\Reminder.pdb
 D:\Projects\Reminder\Reminder\bin\Debug\Reminder.exe
 D:\Projects\Reminder\Reminder\bin\Debug\Reminder.pdb
+D:\Projects\Reminder\Reminder\obj\Debug\Reminder.csprojResolveAssemblyReference.cache
 D:\Projects\Reminder\Reminder\obj\Debug\Reminder.About.resources
+D:\Projects\Reminder\Reminder\obj\Debug\Reminder.Help.resources
 D:\Projects\Reminder\Reminder\obj\Debug\Reminder.MainForm.resources
 D:\Projects\Reminder\Reminder\obj\Debug\Reminder.View.resources
 D:\Projects\Reminder\Reminder\obj\Debug\Reminder.Properties.Resources.resources
 D:\Projects\Reminder\Reminder\obj\Debug\Reminder.csproj.GenerateResource.Cache
-D:\Projects\Reminder\Reminder\obj\Debug\Reminder.csprojResolveAssemblyReference.cache
-D:\Projects\Reminder\Reminder\obj\Debug\Reminder.Help.resources
+D:\Projects\Reminder\Reminder\obj\Debug\Reminder.exe
+D:\Projects\Reminder\Reminder\obj\Debug\Reminder.pdb

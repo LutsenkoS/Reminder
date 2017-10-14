@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <saveData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <backColor>LightGrey</backColor>
-  <width>160</width>
-  <height>28</height>
+  <width>512</width>
+  <height>301</height>
   <location>
-    <X>-32000</X>
-    <Y>-32000</Y>
+    <X>673</X>
+    <Y>280</Y>
   </location>
 </saveData>

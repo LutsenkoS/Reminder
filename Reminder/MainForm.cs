@@ -17,7 +17,7 @@ namespace Reminder
         private MenuItem menuItem1;
         private MenuItem menuItem2;
         private IContainer components1;
-        Thread t ;
+        Thread t;
         
         public MainForm()
         {
@@ -70,13 +70,14 @@ namespace Reminder
         }
         
         private void CreateNotifyIcon()
-        {           
+        {
+            ComponentResourceManager resources = new ComponentResourceManager();
             components1 = new Container();
             contextMenu1 = new ContextMenu();
             menuItem1 = new MenuItem();
             menuItem2 = new MenuItem();
             //initialize contextmenu
-            this.contextMenu1.MenuItems.AddRange(new MenuItem[] { menuItem1, menuItem2 });
+            contextMenu1.MenuItems.AddRange(new MenuItem[] { menuItem1, menuItem2 });           
             //initialize menuitem
             menuItem1.Index = 0;
             menuItem1.Text = "Открыть";
@@ -87,6 +88,7 @@ namespace Reminder
 
             //initialize notifyicon
             notifyIcon1.ContextMenu = contextMenu1;
+            notifyIcon1.Icon = Icon.ExtractAssociatedIcon("appicon.ico");         
             notifyIcon1.Text = "Reminder";
             notifyIcon1.Visible = false;
         }
@@ -240,8 +242,9 @@ namespace Reminder
 
         private void ReadSettings()
         {
-            RegistryKey myKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            myKey.SetValue("Reminder", Application.ExecutablePath);
+            RegistryKey myKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            if (myKey.GetValue("Reminder") == null)
+                myKey.SetValue("Reminder", Application.ExecutablePath);
             myKey.Close();
 
             XmlSerializer serializer = new XmlSerializer(typeof(saveData));

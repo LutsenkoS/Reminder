@@ -7,12 +7,6 @@
     <EventDesc>Завтрак</EventDesc>
   </Events>
   <Events>
-    <EventID>1</EventID>
-    <EventDate>13.03.2015</EventDate>
-    <EventTime>13:0</EventTime>
-    <EventDesc>Обед</EventDesc>
-  </Events>
-  <Events>
     <EventID>2</EventID>
     <EventDate>13.03.2015</EventDate>
     <EventTime>20:0</EventTime>
@@ -26,38 +20,20 @@
   </Events>
   <Events>
     <EventID>5</EventID>
-    <EventDate>17.03.2015</EventDate>
-    <EventTime>21:45</EventTime>
-    <EventDesc>Футбол!!!! Арсенал - Монако!</EventDesc>
+    <EventDate>07.10.2017</EventDate>
+    <EventTime>11:7</EventTime>
+    <EventDesc>qeqwrwtwt</EventDesc>
+  </Events>
+  <Events>
+    <EventID>6</EventID>
+    <EventDate>07.10.2017</EventDate>
+    <EventTime>17:7</EventTime>
+    <EventDesc>eefergethrth</EventDesc>
   </Events>
   <Events>
     <EventID>7</EventID>
-    <EventDate>21.03.2015</EventDate>
-    <EventTime>0:0</EventTime>
-    <EventDesc>Самое новое событие                              Как то так</EventDesc>
-  </Events>
-  <Events>
-    <EventID>8</EventID>
-    <EventDate>26.03.2015</EventDate>
-    <EventTime>8:30</EventTime>
-    <EventDesc>Событие</EventDesc>
-  </Events>
-  <Events>
-    <EventID>9</EventID>
-    <EventDate>26.03.2015</EventDate>
-    <EventTime>14:30</EventTime>
-    <EventDesc>КККККККККККК</EventDesc>
-  </Events>
-  <Events>
-    <EventID>10</EventID>
-    <EventDate>25.03.2015</EventDate>
-    <EventTime>0:0</EventTime>
-    <EventDesc>ВВВВВВВВВВВВВВВВВВВВВВВВВв</EventDesc>
-  </Events>
-  <Events>
-    <EventID>11</EventID>
-    <EventDate>17.05.2015</EventDate>
-    <EventTime>0:0</EventTime>
-    <EventDesc>ВЫвЫвыв</EventDesc>
+    <EventDate>15.10.2017</EventDate>
+    <EventTime>20:0</EventTime>
+    <EventDesc>Посмотреть фильм Ветреная река.</EventDesc>
   </Events>
 </DocumentElement>

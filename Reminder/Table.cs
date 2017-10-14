@@ -33,7 +33,7 @@ namespace Reminder
             DataColumn EventDescColumn = new DataColumn("EventDesc", typeof(string));
             EventDescColumn.Caption = "Event Description";
 
-            //adding columns into events                
+            //adding columns into table events                
             eventTable.Columns.AddRange(new DataColumn[] {eventIDColumn,
                 EventDateColumn, EventTimeColumn, EventDescColumn});
         }
