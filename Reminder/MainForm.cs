@@ -27,36 +27,27 @@ namespace Reminder
 
             t = new Thread(CheckTime);
             t.Start();                     
-        }
-        public class saveData 
-        {
-            public string backColor { get; set; }
-            public int width { get; set; }
-            public int height { get; set; }
-            public Point location { get; set; }
-            
-        }
+        }       
         private void CheckTime()
         {
-            //DataTable eventTable = new DataTable("Events");
-            Table ta = new Table();
-            ta.Create();
+            Table table = new Table();
+            table.Create();
             while (true)
             {
                 Thread.Sleep(60000);
                 
                 try
                 {
-                    ta.eventTable.ReadXml("Events.xml");
+                    table.eventTable.ReadXml("Events.xml");
 
                 }
                 catch (Exception )
                 {
                 }
-                for (int i = 0; i < ta.eventTable.Rows.Count; i++ )
+                for (int i = 0; i < table.eventTable.Rows.Count; i++ )
                 {
 
-                    object[] itemsArray = ta.eventTable.Rows[i].ItemArray;
+                    object[] itemsArray = table.eventTable.Rows[i].ItemArray;
                     string date = DateTime.Now.Date.ToString();
                     string time = DateTime.Now.TimeOfDay.ToString();
                     if (itemsArray[1].ToString() == date.Substring(0, 10) &&
@@ -124,14 +115,14 @@ namespace Reminder
 
         private void SaveSettings()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(saveData));
+            XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
 
             TextWriter writer = null;
             try
             {
                 writer = new StreamWriter("Settings.xml");
 
-                saveData myData = new saveData();
+                SaveData myData = new SaveData();
                 myData.backColor = ColorTranslator.ToHtml(this.BackColor);
                 myData.width = this.Size.Width;
                 myData.height = this.Size.Height;
@@ -247,13 +238,13 @@ namespace Reminder
                 myKey.SetValue("Reminder", Application.ExecutablePath);
             myKey.Close();
 
-            XmlSerializer serializer = new XmlSerializer(typeof(saveData));
-            saveData myData;
+            XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
+            SaveData myData;
             FileStream fs = null;
             try
             {
                 fs = new FileStream("Settings.xml", FileMode.Open);
-                myData = (saveData)serializer.Deserialize(fs);
+                myData = (SaveData)serializer.Deserialize(fs);
                 //myData.setData();
                 this.BackColor = ColorTranslator.FromHtml(myData.backColor);
                 this.Size = new Size(myData.width, myData.height);

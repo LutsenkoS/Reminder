@@ -17,7 +17,7 @@ namespace Reminder
             //table Events
             eventTable = new DataTable("Events");
 
-            // events's columns
+            // events' columns
             DataColumn eventIDColumn = new DataColumn("EventID", typeof(int));
             eventIDColumn.Caption = "Event ID";
             eventIDColumn.ReadOnly = true;
@@ -27,8 +27,8 @@ namespace Reminder
             eventIDColumn.AutoIncrementSeed = 0;
             eventIDColumn.AutoIncrementStep = 1;
             DataColumn EventDateColumn = new DataColumn("EventDate", typeof(string));
-            DataColumn EventTimeColumn = new DataColumn("EventTime", typeof(string));
             EventDateColumn.Caption = "Event Date";
+            DataColumn EventTimeColumn = new DataColumn("EventTime", typeof(string));
             EventTimeColumn.Caption = "Event Time";
             DataColumn EventDescColumn = new DataColumn("EventDesc", typeof(string));
             EventDescColumn.Caption = "Event Description";

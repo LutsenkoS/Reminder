@@ -10,3 +10,6 @@ D:\Projects\Reminder\Reminder\obj\Debug\Reminder.Properties.Resources.resources
 D:\Projects\Reminder\Reminder\obj\Debug\Reminder.csproj.GenerateResource.Cache
 D:\Projects\Reminder\Reminder\obj\Debug\Reminder.exe
 D:\Projects\Reminder\Reminder\obj\Debug\Reminder.pdb
+D:\Github\Reminder\Reminder\bin\Debug\Reminder.exe.config
+D:\Github\Reminder\Reminder\obj\Debug\Reminder.exe
+D:\Github\Reminder\Reminder\obj\Debug\Reminder.pdb
